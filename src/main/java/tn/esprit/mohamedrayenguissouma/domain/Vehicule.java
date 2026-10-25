@@ -1,5 +1,7 @@
 package tn.esprit.mohamedrayenguissouma.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // proxys LAZY de Hibernate
 @Table(name = "vehicule")
 @Getter
 @Setter
@@ -39,4 +46,21 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+
+    // Vehicule * --- 1 Agence (côté propriétaire)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_agence", nullable = false)
+    private Agence agence;
+
+    // Vehicule * --- * Equipement (côté propriétaire, table de jointure)
+    @ManyToMany
+    @JoinTable(name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "id_vehicule"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement"))
+    private Set<Equipement> equipements = new HashSet<>();
+
+    // Vehicule 1 --- * Reservation
+    @JsonIgnore
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST)
+    private List<Reservation> reservations = new ArrayList<>();
 }

@@ -1,5 +1,7 @@
 package tn.esprit.mohamedrayenguissouma.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +11,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // proxys LAZY de Hibernate
 @Table(name = "reservation")
 @Getter
 @Setter
@@ -29,4 +32,19 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutReservation statut;
+
+    // Reservation * --- 1 Vehicule (côté propriétaire)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehicule", nullable = false)
+    private Vehicule vehicule;
+
+    // Reservation * --- 1 Client (côté propriétaire)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client", nullable = false)
+    private Client client;
+
+    // Reservation 1 --- 1 Contrat (côté inverse)
+    @JsonIgnore
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Contrat contrat;
 }

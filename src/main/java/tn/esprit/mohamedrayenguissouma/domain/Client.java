@@ -1,5 +1,7 @@
 package tn.esprit.mohamedrayenguissouma.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // proxys LAZY de Hibernate
 @Table(name = "client")
 @Getter
 @Setter
@@ -37,4 +42,9 @@ public class Client {
 
     @Column(nullable = false)
     private LocalDate dateInscription;
+
+    // Client 1 --- * Reservation
+    @JsonIgnore
+    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    private List<Reservation> reservations = new ArrayList<>();
 }
