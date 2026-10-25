@@ -63,4 +63,9 @@ public class Vehicule {
     @JsonIgnore
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST)
     private List<Reservation> reservations = new ArrayList<>();
+
+    // Vehicule 1 --- * Maintenance (côté inverse)
+    @JsonIgnore
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Maintenance> maintenances = new ArrayList<>();
 }

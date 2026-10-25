@@ -29,7 +29,7 @@ public class Maintenance {
     @Column(length = 500)
     private String description;
 
-    // Maintenance * ---> 1 Vehicule (unidirectionnelle)
+    // Maintenance * --- 1 Vehicule (côté propriétaire)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_vehicule", nullable = false)
     private Vehicule vehicule;

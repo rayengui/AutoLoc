@@ -42,6 +42,7 @@ public class Contrat {
 
     // Contrat 1 <>--- * Paiement : composition, les paiements suivent le cycle de vie du contrat
     @JsonIgnore
-    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Paiement> paiements = new ArrayList<>();
 }
