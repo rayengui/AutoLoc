@@ -9,8 +9,8 @@ import tn.esprit.mohamedrayenguissouma.domain.Agence;
 import tn.esprit.mohamedrayenguissouma.domain.CategorieVehicule;
 import tn.esprit.mohamedrayenguissouma.domain.StatutVehicule;
 import tn.esprit.mohamedrayenguissouma.domain.Vehicule;
-import tn.esprit.mohamedrayenguissouma.repository.AgenceRepository;
-import tn.esprit.mohamedrayenguissouma.repository.VehiculeRepository;
+import tn.esprit.mohamedrayenguissouma.repository.IAgenceRepository;
+import tn.esprit.mohamedrayenguissouma.repository.IVehiculeRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,8 +21,8 @@ import java.util.List;
 @Slf4j
 public class DataInitializer implements CommandLineRunner {
 
-    private final AgenceRepository agenceRepository;
-    private final VehiculeRepository vehiculeRepository;
+    private final IAgenceRepository agenceRepository;
+    private final IVehiculeRepository vehiculeRepository;
 
     @Override
     public void run(String... args) {

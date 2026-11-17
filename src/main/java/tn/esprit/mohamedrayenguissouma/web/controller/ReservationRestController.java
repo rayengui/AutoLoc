@@ -38,7 +38,7 @@ public class ReservationRestController {
     @Operation(summary = "update", description = "Modifier un(e) reservation existant(e)")
     @PutMapping("/modify-reservation")
     public Reservation update(@RequestBody Reservation reservation) {
-        return reservationService.update(reservation);
+        return reservationService.update(reservation.getIdReservation(), reservation);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) reservation par son identifiant")

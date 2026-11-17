@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IAgenceService {
 
-    List<Agence> findAll();
-
-    Agence findById(Long idAgence);
-
     Agence create(Agence agence);
 
-    Agence update(Agence agence);
+    Agence findById(Long id);
 
-    void deleteById(Long idAgence);
+    List<Agence> findAll();
+
+    Agence update(Long id, Agence agence);
+
+    void deleteById(Long id);
 }

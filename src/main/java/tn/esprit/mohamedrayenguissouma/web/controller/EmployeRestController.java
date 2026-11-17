@@ -38,7 +38,7 @@ public class EmployeRestController {
     @Operation(summary = "update", description = "Modifier un(e) employe existant(e)")
     @PutMapping("/modify-employe")
     public Employe update(@RequestBody Employe employe) {
-        return employeService.update(employe);
+        return employeService.update(employe.getIdEmploye(), employe);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) employe par son identifiant")

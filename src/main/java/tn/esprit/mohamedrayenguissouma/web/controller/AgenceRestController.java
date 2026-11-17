@@ -38,7 +38,7 @@ public class AgenceRestController {
     @Operation(summary = "update", description = "Modifier un(e) agence existant(e)")
     @PutMapping("/modify-agence")
     public Agence update(@RequestBody Agence agence) {
-        return agenceService.update(agence);
+        return agenceService.update(agence.getIdAgence(), agence);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) agence par son identifiant")

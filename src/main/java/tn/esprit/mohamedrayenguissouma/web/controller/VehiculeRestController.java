@@ -20,30 +20,30 @@ public class VehiculeRestController {
     @Operation(summary = "create", description = "Ajouter un véhicule")
     @PostMapping("/add-vehicule")
     public Vehicule addVehicule(@RequestBody Vehicule vehicule) {
-        return vehiculeService.addVehicule(vehicule);
+        return vehiculeService.create(vehicule);
     }
 
     @Operation(summary = "findAll", description = "Récupérer la liste complète des véhicules")
     @GetMapping("/retrieve-all-vehicules")
     public List<Vehicule> retrieveAllVehicules() {
-        return vehiculeService.retrieveAllVehicules();
+        return vehiculeService.findAll();
     }
 
     @Operation(summary = "findById", description = "Récupérer un véhicule par son identifiant")
     @GetMapping("/retrieve-vehicule/{idVehicule}")
     public Vehicule retrieveVehicule(@PathVariable Long idVehicule) {
-        return vehiculeService.retrieveVehicule(idVehicule);
+        return vehiculeService.findById(idVehicule);
     }
 
     @Operation(summary = "update", description = "Modifier un véhicule existant")
     @PutMapping("/modify-vehicule")
     public Vehicule modifyVehicule(@RequestBody Vehicule vehicule) {
-        return vehiculeService.updateVehicule(vehicule);
+        return vehiculeService.update(vehicule.getIdVehicule(), vehicule);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un véhicule par son identifiant")
     @DeleteMapping("/remove-vehicule/{idVehicule}")
     public void removeVehicule(@PathVariable Long idVehicule) {
-        vehiculeService.deleteVehicule(idVehicule);
+        vehiculeService.deleteById(idVehicule);
     }
 }

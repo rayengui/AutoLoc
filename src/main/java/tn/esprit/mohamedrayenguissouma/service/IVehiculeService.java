@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IVehiculeService {
 
-    Vehicule addVehicule(Vehicule vehicule);
+    Vehicule create(Vehicule vehicule);
 
-    Vehicule updateVehicule(Vehicule vehicule);
+    Vehicule findById(Long id);
 
-    void deleteVehicule(Long idVehicule);
+    List<Vehicule> findAll();
 
-    Vehicule retrieveVehicule(Long idVehicule);
+    Vehicule update(Long id, Vehicule vehicule);
 
-    List<Vehicule> retrieveAllVehicules();
+    void deleteById(Long id);
 }

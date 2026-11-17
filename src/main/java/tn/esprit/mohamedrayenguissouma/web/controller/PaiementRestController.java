@@ -9,7 +9,7 @@ import tn.esprit.mohamedrayenguissouma.service.IPaiementService;
 
 import java.util.List;
 
-@Tag(name = "Paiement", description = "Gestion des paiements")
+@Tag(name = "Paiement", description = "Gestion des paiements (lecture seule : les paiements passent par le contrat)")
 @RestController
 @RequestMapping("/paiement")
 @RequiredArgsConstructor // injection de dépendances : paiementService est final
@@ -27,23 +27,5 @@ public class PaiementRestController {
     @GetMapping("/retrieve-paiement/{idPaiement}")
     public Paiement findById(@PathVariable Long idPaiement) {
         return paiementService.findById(idPaiement);
-    }
-
-    @Operation(summary = "create", description = "Ajouter un(e) paiement")
-    @PostMapping("/add-paiement")
-    public Paiement create(@RequestBody Paiement paiement) {
-        return paiementService.create(paiement);
-    }
-
-    @Operation(summary = "update", description = "Modifier un(e) paiement existant(e)")
-    @PutMapping("/modify-paiement")
-    public Paiement update(@RequestBody Paiement paiement) {
-        return paiementService.update(paiement);
-    }
-
-    @Operation(summary = "deleteById", description = "Supprimer un(e) paiement par son identifiant")
-    @DeleteMapping("/remove-paiement/{idPaiement}")
-    public void deleteById(@PathVariable Long idPaiement) {
-        paiementService.deleteById(idPaiement);
     }
 }

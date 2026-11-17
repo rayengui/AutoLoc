@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IMaintenanceService {
 
-    List<Maintenance> findAll();
-
-    Maintenance findById(Long idMaintenance);
-
     Maintenance create(Maintenance maintenance);
 
-    Maintenance update(Maintenance maintenance);
+    Maintenance findById(Long id);
 
-    void deleteById(Long idMaintenance);
+    List<Maintenance> findAll();
+
+    Maintenance update(Long id, Maintenance maintenance);
+
+    void deleteById(Long id);
 }

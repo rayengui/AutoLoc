@@ -38,7 +38,7 @@ public class MaintenanceRestController {
     @Operation(summary = "update", description = "Modifier un(e) maintenance existant(e)")
     @PutMapping("/modify-maintenance")
     public Maintenance update(@RequestBody Maintenance maintenance) {
-        return maintenanceService.update(maintenance);
+        return maintenanceService.update(maintenance.getIdMaintenance(), maintenance);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) maintenance par son identifiant")

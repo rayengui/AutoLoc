@@ -38,7 +38,7 @@ public class EquipementRestController {
     @Operation(summary = "update", description = "Modifier un(e) equipement existant(e)")
     @PutMapping("/modify-equipement")
     public Equipement update(@RequestBody Equipement equipement) {
-        return equipementService.update(equipement);
+        return equipementService.update(equipement.getIdEquipement(), equipement);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) equipement par son identifiant")

@@ -11,8 +11,8 @@ import tn.esprit.mohamedrayenguissouma.domain.Contrat;
 import tn.esprit.mohamedrayenguissouma.domain.ModePaiement;
 import tn.esprit.mohamedrayenguissouma.domain.Paiement;
 import tn.esprit.mohamedrayenguissouma.domain.Reservation;
-import tn.esprit.mohamedrayenguissouma.repository.ContratRepository;
-import tn.esprit.mohamedrayenguissouma.repository.ReservationRepository;
+import tn.esprit.mohamedrayenguissouma.repository.IContratRepository;
+import tn.esprit.mohamedrayenguissouma.repository.IReservationRepository;
 import tn.esprit.mohamedrayenguissouma.service.location.legacy.SmsGateway;
 import tn.esprit.mohamedrayenguissouma.service.location.legacy.SmtpClient;
 
@@ -24,15 +24,15 @@ import tn.esprit.mohamedrayenguissouma.service.location.legacy.SmtpClient;
  * getters/setters si votre modele (Atelier 2) utilise d'autres noms
  * (ex. getIdReservation() au lieu de getId()).
  *
- * Adaptations au modele AutoLoc (marquees "adapte") : packages, noms des
- * repositories, getIdXxx() au lieu de getId(), et conversions double/BigDecimal
+ * Adaptations au modele AutoLoc (marquees "adapte") : packages,
+ * getIdXxx() au lieu de getId(), et conversions double/BigDecimal
  * (tarifJournalier, montant et montantTotal sont des BigDecimal dans le modele).
  */
 @Service
 public class LocationManager {
 
-    @Autowired private ReservationRepository reservationRepository; // adapte : IReservationRepository
-    @Autowired private ContratRepository contratRepository;         // adapte : IContratRepository
+    @Autowired private IReservationRepository reservationRepository;
+    @Autowired private IContratRepository contratRepository;
 
     public Contrat confirmerReservation(Long reservationId, String modePaiement,
                                         String codePromo, String canal) {

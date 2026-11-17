@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IEmployeService {
 
-    List<Employe> findAll();
-
-    Employe findById(Long idEmploye);
-
     Employe create(Employe employe);
 
-    Employe update(Employe employe);
+    Employe findById(Long id);
 
-    void deleteById(Long idEmploye);
+    List<Employe> findAll();
+
+    Employe update(Long id, Employe employe);
+
+    void deleteById(Long id);
 }

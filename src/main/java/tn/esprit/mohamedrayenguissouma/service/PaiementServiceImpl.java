@@ -3,38 +3,25 @@ package tn.esprit.mohamedrayenguissouma.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.mohamedrayenguissouma.domain.Paiement;
-import tn.esprit.mohamedrayenguissouma.repository.PaiementRepository;
+import tn.esprit.mohamedrayenguissouma.exception.ResourceNotFoundException;
+import tn.esprit.mohamedrayenguissouma.repository.IPaiementRepository;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor // injection par constructeur de l'attribut final paiementRepository
+@RequiredArgsConstructor
 public class PaiementServiceImpl implements IPaiementService {
 
-    private final PaiementRepository paiementRepository;
+    private final IPaiementRepository paiementRepository;
+
+    @Override
+    public Paiement findById(Long id) {
+        return paiementRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Paiement", id));
+    }
 
     @Override
     public List<Paiement> findAll() {
         return paiementRepository.findAll();
-    }
-
-    @Override
-    public Paiement findById(Long idPaiement) {
-        return paiementRepository.findById(idPaiement).orElse(null);
-    }
-
-    @Override
-    public Paiement create(Paiement paiement) {
-        return paiementRepository.save(paiement);
-    }
-
-    @Override
-    public Paiement update(Paiement paiement) {
-        return paiementRepository.save(paiement);
-    }
-
-    @Override
-    public void deleteById(Long idPaiement) {
-        paiementRepository.deleteById(idPaiement);
     }
 }

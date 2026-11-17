@@ -38,7 +38,7 @@ public class ContratRestController {
     @Operation(summary = "update", description = "Modifier un(e) contrat existant(e)")
     @PutMapping("/modify-contrat")
     public Contrat update(@RequestBody Contrat contrat) {
-        return contratService.update(contrat);
+        return contratService.update(contrat.getIdContrat(), contrat);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) contrat par son identifiant")

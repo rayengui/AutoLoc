@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IReservationService {
 
-    List<Reservation> findAll();
-
-    Reservation findById(Long idReservation);
-
     Reservation create(Reservation reservation);
 
-    Reservation update(Reservation reservation);
+    Reservation findById(Long id);
 
-    void deleteById(Long idReservation);
+    List<Reservation> findAll();
+
+    Reservation update(Long id, Reservation reservation);
+
+    void deleteById(Long id);
 }

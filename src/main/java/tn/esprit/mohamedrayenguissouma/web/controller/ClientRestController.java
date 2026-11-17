@@ -38,7 +38,7 @@ public class ClientRestController {
     @Operation(summary = "update", description = "Modifier un(e) client existant(e)")
     @PutMapping("/modify-client")
     public Client update(@RequestBody Client client) {
-        return clientService.update(client);
+        return clientService.update(client.getIdClient(), client);
     }
 
     @Operation(summary = "deleteById", description = "Supprimer un(e) client par son identifiant")
