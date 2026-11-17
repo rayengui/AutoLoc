@@ -43,6 +43,10 @@ public class Client {
     @Column(nullable = false)
     private LocalDate dateInscription;
 
+    // Atelier 6 : type de client utilise pour les remises (PARTICULIER, ENTREPRISE, VIP)
+    @Column(nullable = false, length = 20, columnDefinition = "varchar(20) default 'PARTICULIER'")
+    private String type = "PARTICULIER";
+
     // Client 1 --- * Reservation
     @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
